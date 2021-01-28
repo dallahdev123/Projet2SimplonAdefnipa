@@ -26,17 +26,21 @@ header{
 #info_moyenne{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  height: 300x;
+  
 }
 
 #main-bar{
   border-radius: cornsilk 1px solid;
-  text-align: center;  
-  
+  text-align: center;
+  background:url('/images/ciel.jpg');
+  background-size: cover;
+  height:500px;
 }
 
 #side-bar{
   border: #d82e2e 1px solid;
-  background: cornsilk;
+  background: url('/images/mi.jpg');
 }
 table{
   border: 1px solid;
