@@ -38,6 +38,18 @@ header{
   border: #d82e2e 1px solid;
   background: cornsilk;
 }
+table{
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+thead{
+  text-align: center;
+}
+td{
+  border: 1px solid;
+  width: 25px;
+}
 #side-bar-head{
   margin: auto;
   display: flex;
