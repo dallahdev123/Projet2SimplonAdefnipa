@@ -16,18 +16,9 @@
       <div id="main">
         <section id="main-bar">
           <div id="time">
-            <span class="material-icons">date_range</span>
-            <%let date1 = new Date();
-              let dateLocale = date1.toLocaleString('fr-FR',{
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric'});
-            %>
-            <h2><%= dateLocale%> </h2>
+            <span class="material-icons"></span>
+           
+            <h2 id="heure"> </h2>
           </div>
           <div id="data">
             <div>
@@ -98,5 +89,23 @@
       </footer>
     </div>
     <script src="/javascripts/socket.js"></script>
+    <script>
+       function heureMaj(){
+        let date1 = new Date();
+              let dateLocale = date1.toLocaleString('fr-FR',{
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'});
+              document.getElementById('heure').innerHTML=dateLocale
+              setTimeout('heureMaj();','1000');
+      }
+            
+            heureMaj()
+    </script>
+
   </body>
 </html>
