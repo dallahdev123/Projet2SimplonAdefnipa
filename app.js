@@ -27,7 +27,7 @@ app.use('/users', usersRouter);
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
 
-const port = new SerialPort('/dev/ttyACM1')
+const port = new SerialPort('/dev/ttyUSB0')
 
 const parser = new Readline()
 port.pipe(parser)
@@ -39,6 +39,10 @@ const wss = new WebSocket.Server({port:8888});
 wss.on('connection', function connection(ws){
   console.log("New user is connected");
   parser.on('data', function(tmp){
+    var heures = new Date()
+    var heure = heures.getHours()
+    var minute = heures.getMinutes()
+
     var temp = Number(tmp.slice(0,5))
     var humidite = Number(tmp.slice(5,10))
     console.log(temp, humidite);
@@ -52,16 +56,19 @@ wss.on('connection', function connection(ws){
     database: "meteo_db"
   });
 
-  con.connect(function(err) {
-
-    if (err) throw err;
-    console.log("Connected!");
-    var sql1 = `INSERT INTO tmp_humidity (temperature, humidite) VALUES ('${temp}','${humidite}')`;
-    con.query(sql1, function (err, result1) {
-      if (err) throw err;
-      console.log("1 record inserted");
-    });
-  });
+  for (heure = 08; heure < 25; heure++) {
+    if (minute == 00) {
+      con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+        var sql1 = `INSERT INTO tmp_humidity (temperature, humidite) VALUES ('${temp}','${humidite}')`;
+        con.query(sql1, function (err, result1) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        });
+      });
+    }
+  }
   })
 
   port.write('ROBOT PLEASE RESPOND\n')
