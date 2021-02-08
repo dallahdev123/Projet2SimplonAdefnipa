@@ -19,7 +19,7 @@ var socket = new WebSocket('ws://localhost:8888');
           //temperature et humidite 8h, 12h et 19
             var temp_moyenne = document.getElementById('temp_moyenne')
               var hum_moyenne = document.getElementById('hum_moyenne')
-          if (heure.getHours() == 08) {
+          if (heure.getHours() == 08 && heure.getMinutes()== 00) {
               var tmp8h = document.getElementById('tmp8h')
               var humidity8h = document.getElementById('humidity8h') 
               tmp8h.innerHTML = temp + "°C";
@@ -27,7 +27,7 @@ var socket = new WebSocket('ws://localhost:8888');
               tempMoy.push(temp)  
               humpMoy.push(humidite)
 
-          }else if (heure.getHours() == 12) {
+          }else if (heure.getHours() == 12 && heure.getMinutes()== 00) {
               var tmp12h = document.getElementById('tmp12h')
               var humidity12h = document.getElementById('humidity12h') 
               tmp12h.innerHTML = temp + "°C";
@@ -35,7 +35,7 @@ var socket = new WebSocket('ws://localhost:8888');
               tempMoy.push(temp)  
               humpMoy.push(humidite)
 
-          }else if (heure.getHours() == 19) {
+          }else if (heure.getHours() == 19 && heure.getMinutes()== 00) {
               var tmp19h = document.getElementById('tmp19h')
               var humidity19h = document.getElementById('humidity19h') 
               tmp19h.innerHTML = temp + "°C";
